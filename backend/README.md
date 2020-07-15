@@ -97,6 +97,13 @@ pip3 install -r requirements.txt
 pytest
 pytest -s # with debugging output
 ````
+
+#### Coverage
+````
+pytest --cov=myproj test/  # check code coverage of the tests
+coverage html
+````
+
 #### Watch mode
 ````
 ptw
