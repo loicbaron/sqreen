@@ -13,21 +13,25 @@ class Obj(Base):
     id = Column(types.Integer, primary_key=True)
     attribute = Column(types.String(255))
     
-    def __init__(self, **kwargs):
-        super(Obj, self).__init__(**kwargs)
+    def __init__(self, id = None, attribute = ""):
+        self.id = id
+        self.attribute = attribute
 
-    def fromBlob(self, obj_dict):
+    @classmethod
+    def fromBlob(cls, obj_dict):
         if "id" in obj_dict:
-            self.id = obj_dict["id"]
-        self.attribute = obj_dict["attribute"]
-        return self
+            id = obj_dict["id"]
+        else:
+            id = None
+        attribute = obj_dict["attribute"]
+        return cls(id, attribute)
 
     def toJSON(self):
-        return json.dumps(self.__dict__)
+        return json.dumps({'id': self.id, 'attribute': self.attribute})
 
     def __repr__(self):
-        return "Object(attribute:{})".format(self.attribute)
+        return "Object(id: {}, attribute:{})".format(self.id, self.attribute)
     
     def __str__(self):
-        return "attribute:{}".format(self.attribute)
+        return "id:{}, attribute:{}".format(self.id, self.attribute)
 
