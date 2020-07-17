@@ -1,3 +1,4 @@
+import os
 from project.notifications.notify_email import NotifyEmail
 from project.notifications.notify_log import NotifyLog
 
@@ -13,10 +14,16 @@ def dispatch(message: str) -> list:
   #   try except and continue to handle errors on one of the targets
   #   results could be stored in DB
   try:
-    log_written = NotifyLog(message).send()
+    root_path = os.path.join(os.path.dirname(__file__), '../..')
+    log_written = NotifyLog(message, root_path).send()
     results.append({'log': log_written})
 
-    email_sent = NotifyEmail(message).send()
+    smtp_server = os.environ.get('EMAIL_SMTP_HOST')
+    port = int(os.environ.get("EMAIL_SMTP_TLS_PORT") or 587)  # For starttls
+    password = os.environ.get('EMAIL_PASSWORD')
+    sender_email = os.environ.get('EMAIL_SENDER')
+    receiver_email = os.environ.get('EMAIL_RECEIVER')
+    email_sent = NotifyEmail(message, smtp_server, port, sender_email, password).send(receiver_email)
     results.append({'email': email_sent})
   except Exception:
     import traceback
