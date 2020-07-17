@@ -15,12 +15,13 @@ def test_notifications_without_signature_forbidden(client):
 def get_true():
     return True
 
-def test_notifications_signature_ok(client, monkeypatch):
-    with patch("project.config.security.check_signature") as mock_signature:
+def test_notifications_signature_ok(client):
+    with patch("project.config.security.check_signature") as mock_signature, \
+        patch("project.notifications.notify_log.NotifyLog.send") as mock_notify_log, \
+        patch("project.notifications.notify_email.NotifyEmail.send") as mock_notify_email:
         mock_signature.return_value = True
-        # Application of the monkeypatch to replace Path.home
-        # with the behavior of mockreturn defined above.
-        monkeypatch.setattr(NotifyEmail, "send", get_true)
+        mock_notify_log.return_value = True
+        mock_notify_email.return_value = True
         req_sig = '9d101d2bf630748679226b767d2031634c520390ff0e926afc09bc65a05bfdb2'
         rv = client.post(
             '/api/notifications', 
