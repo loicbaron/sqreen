@@ -9,6 +9,7 @@ jobs:
     steps:
       - checkout
       - run: cd backend
+      - run: pwd
       - python/load-cache
       - python/install-deps
       - python/save-cache
