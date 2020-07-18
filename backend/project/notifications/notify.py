@@ -1,15 +1,16 @@
+from abc import ABCMeta, abstractmethod
 """
-informal interface
-  duck typing to inform users that this is an interface
-  and should be used accordingly
+Formal interface
+  using Abstract Method Declaration
 """
-# todo: use abc.ABCMeta Formal interface
 
-class NotifyInterface:
-
+class NotifyInterface(metaclass=ABCMeta):
+  
+  @abstractmethod
   def __init__(self, message):
     self.message = message
-
+  
+  @abstractmethod
   def send(self) -> bool:
-    pass
+    raise NotImplementedError
 

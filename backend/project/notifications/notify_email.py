@@ -5,11 +5,12 @@ from project.notifications.notify import NotifyInterface
 
 class NotifyEmail(NotifyInterface):
 
-  def __init__(self, message: str, smtp_server: str, port: int, sender_email: str, password: str):
+  def __init__(self, message: str, smtp_server: str, port: int, sender_email: str, password: str, receiver_email: str):
     self.smtp_server = smtp_server
     self.port = port
-    self.password = password
     self.sender_email = sender_email
+    self.password = password
+    self.receiver_email = receiver_email
     super().__init__(message)
 
   def get_subject(self) -> str:
@@ -27,13 +28,13 @@ class NotifyEmail(NotifyInterface):
     server.login(self.sender_email, self.password)
     return server
 
-  def send(self, receiver_email: str) -> bool:
+  def send(self) -> bool:
     result = False
     try:
         # smtp connection
         server = self.get_connection()
         # send email
-        server.sendmail(self.sender_email, receiver_email, 'Subject: {}\n\n{}'.format(self.get_subject(), self.message))
+        server.sendmail(self.sender_email, self.receiver_email, 'Subject: {}\n\n{}'.format(self.get_subject(), self.message))
         result = True
         server.quit()
     except Exception as e:

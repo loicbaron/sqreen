@@ -23,7 +23,7 @@ def dispatch(message: str) -> dict:
     password = os.environ.get('EMAIL_PASSWORD')
     sender_email = os.environ.get('EMAIL_SENDER')
     receiver_email = os.environ.get('EMAIL_RECEIVER')
-    email_sent = NotifyEmail(message, smtp_server, port, sender_email, password).send(receiver_email)
+    email_sent = NotifyEmail(message, smtp_server, port, sender_email, password, receiver_email).send()
     result['email'] = email_sent
   except Exception:
     import traceback
