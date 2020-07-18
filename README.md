@@ -3,6 +3,9 @@
 
 ### Please have a look into [backend folder](backend)
 
+[![loicbaron](https://circleci.com/gh/loicbaron/sqreen.svg?style=svg)](<LINK>)
+
+
 ---
 First plug an application to Sqreen and enable the webhook notifications (create a free account on https://my.sqreen.io).
 
