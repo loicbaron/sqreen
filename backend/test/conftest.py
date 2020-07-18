@@ -1,16 +1,20 @@
 import os
 import pytest
 from dotenv import load_dotenv
+from pathlib import Path
 
-from project.app import create_app
 
-@pytest.fixture
-def app():
+def pytest_configure(config):
     # load dotenv in the base root
     APP_ROOT = os.path.join(os.path.dirname(__file__), '..')   # refers to application_top
-    dotenv_path = os.path.join(APP_ROOT, '.env')
-    load_dotenv(dotenv_path)
-    # override for test
-    os.environ['SQREEN_NOTIFICATIONS_KEY'] = '1234'
+    env_path = Path(APP_ROOT) / '.test.env'
+    load_dotenv(dotenv_path=env_path, override=True)
+    return config
+
+@pytest.fixture
+def app(mocker):
+    from project.app import create_app
     app = create_app()
-    return app
+    with app.app_context():
+        yield app   # Note that we changed return for yield, see below for why
+

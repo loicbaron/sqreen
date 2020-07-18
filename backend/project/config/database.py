@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
+import os
 from marshmallow import ValidationError
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-from project.config.environment import environment
+if os.environ.get("APP_DB"):
+    APP_DB = "{}?check_same_thread=False".format(os.environ.get("APP_DB"))
+else:
+    APP_DB = "" # if empty sqlite will be in memory
 
 config = {
-    'SQL_DATABASE_URI': 'sqlite://{}?check_same_thread=False'.format(environment["db"]),
+    'SQL_DATABASE_URI': 'sqlite://{}'.format(APP_DB),
     'SQL_ISOLATION_LEVEL': 'SERIALIZABLE',
     'SQL_ECHO': True,
     'SQL_ECHO_POOL': False,
@@ -21,7 +25,7 @@ config = {
     'SQL_EXPIRE_ON_COMMIT': True
 }
 
-engine = create_engine(config['SQL_DATABASE_URI'], convert_unicode=True)
+engine = create_engine(config['SQL_DATABASE_URI'])
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
