@@ -10,9 +10,8 @@ Use a production WSGI server instead.
 """
 
 if __name__ == '__main__':
-    # Default Environment variables 
-    # are defined in config/environment.py
-    # load dotenv in the base root
+    # Environment variables are defined in .env
+    # load dotenv from the base root
     APP_ROOT = os.path.join(os.path.dirname(__file__), '..')   # refers to application_top
     dotenv_path = os.path.join(APP_ROOT, '.env')
     load_dotenv(dotenv_path)

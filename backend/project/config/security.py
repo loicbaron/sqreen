@@ -7,7 +7,6 @@ from flask import current_app
 from functools import wraps
 
 def check_signature(secret_key, request_signature, request_body):
-    print(secret_key, request_signature, request_body)
     hasher = hmac.new(secret_key, request_body, hashlib.sha256)
     dig = hasher.hexdigest()
 

@@ -11,8 +11,8 @@ import os
 from flask import Flask, jsonify, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 
-from project.config.database import config, db_session, init_db
-# from project.controllers.obj import obj_controller
+from project.config.database import db_session, init_db
+from project.controllers.events import events_controller
 from project.controllers.notifications import notifications_controller
 
 def create_app():
@@ -30,9 +30,9 @@ def create_app():
     @app.route('/')
     def home():
         return render_template('index.html')
-
+    
     app.register_blueprint(notifications_controller)
-    # app.register_blueprint(obj_controller)
+    app.register_blueprint(events_controller)
     
     return app
 
