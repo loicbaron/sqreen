@@ -6,8 +6,10 @@ orbs:
 jobs:
   build-and-test:
     executor: python/default
+    working_directory: ~/sqreen/backend
     steps:
-      - checkout
+      - checkout:
+          path: ~/sqreen
       - run: cd backend
       - run: pwd
       - python/load-cache
