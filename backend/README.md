@@ -13,6 +13,10 @@ Then you can check your public IP on <a href="https://www.whatismyip.com/" targe
 You need to know the configuration of your email provider.
 ### Tip 
 For Gmail:
+- Activate 2-step auth
+- Creat App Password
+<a href="https://support.google.com/accounts/answer/185833?hl=en" target="_blank">https://support.google.com/accounts/answer/185833?hl=en</a>
+
 ```
 EMAIL_SMTP_HOST="smtp.gmail.com"
 EMAIL_SMTP_TLS_PORT=587
