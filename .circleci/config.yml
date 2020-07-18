@@ -10,7 +10,6 @@ jobs:
     steps:
       - checkout:
           path: ~/sqreen
-      - run: cd backend
       - run: pwd
       - python/load-cache
       - python/install-deps
