@@ -14,7 +14,7 @@ You need to know the configuration of your email provider.
 ### Tip 
 For Gmail:
 - Activate 2-step auth
-- Creat App Password
+- Create App Password
 <a href="https://support.google.com/accounts/answer/185833?hl=en" target="_blank">https://support.google.com/accounts/answer/185833?hl=en</a>
 
 ```
