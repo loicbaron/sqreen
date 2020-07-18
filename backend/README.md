@@ -115,7 +115,12 @@ ptw -- -s # with debugging output
 python3 setup.py install
 ````
 
-### Run
+### Run DEV
 ````
 python3 run.py
+````
+
+### Run PROD
+````
+gunicorn wsgi:app -w 4 -b 0.0.0.0:8000
 ````

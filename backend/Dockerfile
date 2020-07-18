@@ -16,5 +16,9 @@ COPY ./project ./project
 COPY ./test ./test
 COPY *.py ./
 
+# RUN FOR DEV
 # WARNING: This is a development server. Do not use it in a production deployment.
-CMD ["python", "run.py"]
+# ENTRYPOINT ["python", "run.py"]
+
+# RUN FOR PROD
+ENTRYPOINT ["gunicorn", "wsgi:app", "-w", "4", "-b", "0.0.0.0:8000"]
