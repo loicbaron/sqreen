@@ -8,6 +8,7 @@ jobs:
     executor: python/default
     steps:
       - checkout
+      - run: cd backend
       - python/load-cache
       - python/install-deps
       - python/save-cache
