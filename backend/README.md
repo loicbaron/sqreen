@@ -60,6 +60,13 @@ EMAIL_RECEIVER="your@email.com"
 ````
 
 # Backend for Sqreen notifications
+## Configuration
+Please go through Pre-requisites 
+
+````
+.env
+sqreen.ini
+````
 ## Build & Run with Docker
 ````
 docker build . -t sqreen_backend
