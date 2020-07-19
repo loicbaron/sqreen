@@ -7,10 +7,10 @@ Formal interface
 class NotifyInterface(metaclass=ABCMeta):
   
   @abstractmethod
-  def __init__(self, message):
-    self.message = message
+  def __init__(self, name: str):
+    self.name = name
   
   @abstractmethod
-  def send(self) -> bool:
+  def send(self, message: str) -> bool:
     raise NotImplementedError
 

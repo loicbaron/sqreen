@@ -5,12 +5,12 @@ from project.notifications.notify import NotifyInterface
 
 class NotifyLog(NotifyInterface):
 
-  def __init__(self, message: str, root_path: str = None):
+  def __init__(self, name: str, root_path: str = None):
     if root_path:
       self.root_path = root_path
     else:
       self.root_path = os.path.join(os.path.dirname(__file__), '../..')
-    super().__init__(message)
+    super().__init__(name)
 
   def get_path(self, folder_name: str) -> str:
     logs_folder = "{}/{}".format(self.root_path, folder_name)
@@ -19,15 +19,15 @@ class NotifyLog(NotifyInterface):
     return logs_folder
 
   def get_filename(self) -> str:
-    # todo: parse self.message to get more relevant log file (ex: per app monitored, type of event)
+    # todo: parse message to get more relevant log file (ex: per app monitored, type of event)
     path = self.get_path("logs")
     today = date.today().strftime("%Y-%m-%d")
     return "{}/{}.log".format(path, today)
 
-  def send(self) -> bool:
+  def send(self, message) -> bool:
     try:
       filename = self.get_filename()
-      self.write_to_file(filename, self.message)
+      self.write_to_file(filename, message)
       self.write_to_file(filename, "\n")
     except Exception:
       import traceback
