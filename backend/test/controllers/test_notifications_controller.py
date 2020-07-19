@@ -18,8 +18,6 @@ def get_true():
 
 def test_notifications_bad_user_input(client, mocker):
     mocker.patch("project.config.security.check_signature", return_value=True)
-    mocker.patch("project.notifications.notify_log.NotifyLog.send", return_value=True)
-    mocker.patch("project.notifications.notify_email.NotifyEmail.send", return_value=True)
     req_sig = '9d101d2bf630748679226b767d2031634c520390ff0e926afc09bc65a05bfdb2'
     rv = client.post(
         '/api/notifications', 
@@ -33,8 +31,6 @@ def test_notifications_wrong_message_format(client, mocker):
     mocker.patch("project.config.database.db_session.add", return_value=True)
     mocker.patch("project.config.database.db_session.commit", return_value=True)
     mocker.patch("project.config.security.check_signature", return_value=True)
-    mocker.patch("project.notifications.notify_log.NotifyLog.send", return_value=True)
-    mocker.patch("project.notifications.notify_email.NotifyEmail.send", return_value=True)
     req_sig = '9d101d2bf630748679226b767d2031634c520390ff0e926afc09bc65a05bfdb2'
     rv = client.post(
         '/api/notifications', 
@@ -48,8 +44,6 @@ def test_notifications_ok(client, mocker):
     mocker.patch("project.config.database.db_session.add", return_value=True)
     mocker.patch("project.config.database.db_session.commit", return_value=True)
     mocker.patch("project.config.security.check_signature", return_value=True)
-    mocker.patch("project.notifications.notify_log.NotifyLog.send", return_value=True)
-    mocker.patch("project.notifications.notify_email.NotifyEmail.send", return_value=True)
     req_sig = '9d101d2bf630748679226b767d2031634c520390ff0e926afc09bc65a05bfdb2'
     rv = client.post(
         '/api/notifications', 
