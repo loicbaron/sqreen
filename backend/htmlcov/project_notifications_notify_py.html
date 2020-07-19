@@ -60,11 +60,11 @@
     <p id="t7" class="run"><span class="n"><a href="#t7">7</a></span><span class="t"><span class="key">class</span> <span class="nam">NotifyInterface</span><span class="op">(</span><span class="nam">metaclass</span><span class="op">=</span><span class="nam">ABCMeta</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t8" class="pln"><span class="n"><a href="#t8">8</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t9" class="run"><span class="n"><a href="#t9">9</a></span><span class="t">  <span class="op">@</span><span class="nam">abstractmethod</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t10" class="run"><span class="n"><a href="#t10">10</a></span><span class="t">  <span class="key">def</span> <span class="nam">__init__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">message</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t11" class="run"><span class="n"><a href="#t11">11</a></span><span class="t">    <span class="nam">self</span><span class="op">.</span><span class="nam">message</span> <span class="op">=</span> <span class="nam">message</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t10" class="run"><span class="n"><a href="#t10">10</a></span><span class="t">  <span class="key">def</span> <span class="nam">__init__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">name</span><span class="op">:</span> <span class="nam">str</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t11" class="run"><span class="n"><a href="#t11">11</a></span><span class="t">    <span class="nam">self</span><span class="op">.</span><span class="nam">name</span> <span class="op">=</span> <span class="nam">name</span>&nbsp;</span><span class="r"></span></p>
     <p id="t12" class="pln"><span class="n"><a href="#t12">12</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t13" class="run"><span class="n"><a href="#t13">13</a></span><span class="t">  <span class="op">@</span><span class="nam">abstractmethod</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t14" class="run"><span class="n"><a href="#t14">14</a></span><span class="t">  <span class="key">def</span> <span class="nam">send</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span> <span class="op">-></span> <span class="nam">bool</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t14" class="run"><span class="n"><a href="#t14">14</a></span><span class="t">  <span class="key">def</span> <span class="nam">send</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">message</span><span class="op">:</span> <span class="nam">str</span><span class="op">)</span> <span class="op">-></span> <span class="nam">bool</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t15" class="mis show_mis"><span class="n"><a href="#t15">15</a></span><span class="t">    <span class="key">raise</span> <span class="nam">NotImplementedError</span>&nbsp;</span><span class="r"></span></p>
     <p id="t16" class="pln"><span class="n"><a href="#t16">16</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
 </div>
@@ -72,7 +72,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.2</a>,
-            created at 2020-07-18 23:24
+            created at 2020-07-20 00:04
         </p>
     </div>
 </div>
