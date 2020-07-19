@@ -1,12 +1,18 @@
 from unittest.mock import patch
 
 from project.notifications.dispatcher import dispatch
+from project.notifications.notify_test import NotifyTest, NotifyTestException
 
 def test_dispatch():
-  with patch("project.notifications.notify_log.NotifyLog.send") as mock_notify_log, patch("project.notifications.notify_email.NotifyEmail.send") as mock_notify_email:
-    mock_notify_log.return_value = True
-    mock_notify_email.return_value = True
-    result = dispatch("message")
-    assert len(result) == 2
-    assert result['log'] == True
-    assert result['email'] == True
+  workers = [ NotifyTest("test1"), NotifyTest("test2") ]
+  result = dispatch("message", workers)
+  assert len(result) == 2
+  assert result['test1'] == True
+  assert result['test2'] == True
+
+def test_dispatch_with_exception():
+  workers = [ NotifyTestException("test1"), NotifyTest("test2") ]
+  result = dispatch("message", workers)
+  assert len(result) == 1
+  assert result['test2'] == True
+
