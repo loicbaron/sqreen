@@ -1,5 +1,5 @@
 import json
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, current_app, jsonify, request
 from concurrent.futures import ThreadPoolExecutor
 
 from project.config.security import verify_request_signature
@@ -34,4 +34,5 @@ def process_event(event):
     # todo: distribute tasks to workers
     #       use Celery Or send the task to a Queue (Reddis, ZMQ...)
     executor = ThreadPoolExecutor(1)
-    executor.submit(dispatch, message=str(event))
+    workers = current_app.config['WORKERS']
+    executor.submit(dispatch, message=str(event), workers=workers)

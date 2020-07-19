@@ -11,6 +11,7 @@ import os
 from flask import Flask, jsonify, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 
+from project.config.notification_workers import workers
 from project.config.database import db_session, init_db
 from project.controllers.events import events_controller
 from project.controllers.notifications import notifications_controller
@@ -19,7 +20,8 @@ def create_app():
     app = Flask(__name__, static_url_path='', instance_relative_config=True)
     app.config['SQREEN_NOTIFICATIONS_KEY'] = os.environ.get("SQREEN_NOTIFICATIONS_KEY")
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    
+    app.config['WORKERS'] = workers
+
     with app.app_context():
         init_db()
 
