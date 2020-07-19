@@ -3,6 +3,7 @@ import pytest
 from dotenv import load_dotenv
 from pathlib import Path
 
+from project.notifications.notify_test import NotifyTest
 
 def pytest_configure(config):
     # load dotenv in the base root
@@ -15,6 +16,7 @@ def pytest_configure(config):
 def app(mocker):
     from project.app import create_app
     app = create_app()
+    app.config['WORKERS'] = [ NotifyTest("test") ]
     with app.app_context():
         yield app   # Note that we changed return for yield, see below for why
 
