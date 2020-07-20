@@ -103,22 +103,25 @@ pip3 install -r requirements.txt
 ````
 
 ### Tests
+
+note: after the first install, when using virtual env, you need to deactivate and reactivate in order to have pytest available.
+
 #### pytest
 ````
-pytest
-pytest -s # with debugging output
+python3 -m pytest
+python3 -m pytest -s # with debugging output
 ````
 
 #### Coverage
 ````
-pytest --cov=myproj test/  # check code coverage of the tests
+python3 -m pytest --cov=project test/  # check code coverage of the tests
 coverage html
 ````
 
 #### Watch mode
 ````
-ptw
-ptw -- -s # with debugging output
+python3 -m ptw
+python3 -m ptw -- -s # with debugging output
 ````
 
 ### Install
